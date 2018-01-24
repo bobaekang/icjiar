@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1516811572037.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5B00DEC2",
+    "lastKnownWriteTime" : 1516808705,
+    "last_content_update" : 1516808705,
+    "path" : "X:/_icjia_github/icjiaRworkshop/data-raw/crimes.R",
+    "project_path" : "data-raw/crimes.R",
+    "properties" : {
+        "cursorPosition" : "1,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

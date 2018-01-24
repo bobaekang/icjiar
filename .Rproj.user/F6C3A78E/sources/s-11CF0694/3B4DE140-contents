@@ -1,0 +1,17 @@
+Package: icjiaRworkshop
+Type: Package
+Title: A package for ICJIA R Workshop
+Version: 0.1.0
+Authors@R: person("Bobae", "Kang", email = "Bobae.Kang@illinois.gov",
+  role = c("aut", "cre"))
+Description: A package for ICJIA R Workshop. It provides sample data sets
+    to be used in the workshop. See the workshop website 
+    (bobaekang.github.io/icjia-r-workshop/) for more on the workshop and
+    the relevant materials.
+Depends: R (>= 3.4.3)
+Imports:
+    tibble
+License: CC0
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
