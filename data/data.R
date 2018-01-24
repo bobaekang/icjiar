@@ -50,3 +50,14 @@ NULL
 #'
 #' @source \url{https://www.isp.state.il.us/crime/ucrhome.cfm}
 "ispcrime"
+
+
+#' Regional Categories for Illinois counties.
+#'
+#' Illinois counties are categorised into three larger regions: Northern,
+#' Central, and Southern. Note that the Cook county is of its own category.
+#'
+#' @format A data frame with 2 variables: \code{region} and \code{county}
+#'
+#' @source \url{https://www.isp.state.il.us/crime/ucrhome.cfm}
+"regions"

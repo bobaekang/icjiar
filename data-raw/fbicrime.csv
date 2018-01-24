@@ -1,4 +1,4 @@
-year,county,violentCrime,murder,rape_old,rape_new,robbery,aggAssult,propertyCrime,burglary,larcenyTft,MVTft,arson
+year,county,violentCrime,murder,rape_old,rape_new,robbery,aggAssault,propertyCrime,burglary,larcenyTft,MVTft,arson
 2011,Adams,25,0,7,NA,0,18,275,63,200,12,2
 2011,Alexander,8,0,3,NA,0,5,84,23,52,9,1
 2011,Bond,2,0,0,NA,0,2,139,42,93,4,0
