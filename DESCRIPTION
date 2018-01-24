@@ -14,4 +14,6 @@ Imports:
 License: CC0
 Encoding: UTF-8
 LazyData: true
+URL: http://github.com/bobaekang/icjiaRworkshop
+BugReports: https://github.com/bobaekang/icjiaRworkshop/issues
 RoxygenNote: 6.0.1
