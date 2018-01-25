@@ -1,11 +1,12 @@
-Package: icjiaRworkshop
+Package: icjiar
 Type: Package
-Title: A package for ICJIA R Workshop
+Title: An R package for ICJIA
 Version: 0.1.0
 Authors@R: person("Bobae", "Kang", email = "Bobae.Kang@illinois.gov",
   role = c("aut", "cre"))
-Description: A package for ICJIA R Workshop. It provides sample data sets
-    to be used in the workshop. See the workshop website 
+Description: An R package for Illinois Criminal Justice Information Authority.
+    It provides sample data sets to be used in the ICJIA R workshop as well as
+    other useful functions. Refer to the workshop website
     (bobaekang.github.io/icjia-r-workshop/) for more on the workshop and
     the relevant materials.
 Depends: R (>= 3.4.3)
@@ -14,6 +15,6 @@ Imports:
 License: CC0
 Encoding: UTF-8
 LazyData: true
-URL: http://github.com/bobaekang/icjiaRworkshop
-BugReports: https://github.com/bobaekang/icjiaRworkshop/issues
+URL: http://github.com/bobaekang/icjiar
+BugReports: https://github.com/bobaekang/icjiar/issues
 RoxygenNote: 6.0.1
