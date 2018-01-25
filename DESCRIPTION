@@ -10,8 +10,6 @@ Description: An R package for Illinois Criminal Justice Information Authority.
     (bobaekang.github.io/icjia-r-workshop/) for more on the workshop and
     the relevant materials.
 Depends: R (>= 3.4.3)
-Imports:
-    tibble
 License: MIT
 Encoding: UTF-8
 LazyData: true

@@ -1,6 +1,3 @@
-#' @importFrom tibble tibble
-NULL
-
 #' Crime in Illinois 2011-2015 from FBI.
 #'
 #' The county-level crime data in Illinois from 2011 to 2015 extracted from
