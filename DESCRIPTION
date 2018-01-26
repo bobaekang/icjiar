@@ -16,3 +16,6 @@ LazyData: true
 URL: http://github.com/bobaekang/icjiar
 BugReports: https://github.com/bobaekang/icjiar/issues
 RoxygenNote: 6.0.1
+Imports:
+    feather (>= 0.3.1),
+    data.table (>= 1.10.4)

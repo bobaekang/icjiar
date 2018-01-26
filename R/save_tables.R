@@ -49,13 +49,13 @@ save_tables <- function (tables, filenames, dir = NA, format = NA) {
 
     if (is.na(format)) {
       message(paste("Saving", filename_feather), "...")
-      write_feather(table, filename_feather)
+      feather::write_feather(table, filename_feather)
       message(paste("Saving", filename_csv), "...")
-      fwrite(table, filename_csv)
+      data.table::fwrite(table, filename_csv)
     } else if (format == "feather") {
-      write_feather(tables[[i]], filename_feather)
+      feather::write_feather(tables[[i]], filename_feather)
     } else if (format == "csv") {
-      fwrite(table, filename_csv)
+      data.table::fwrite(table, filename_csv)
     } else {
       stop("Invalid format input. format must be NA, \"feather\", or \"csv\".")
     }
