@@ -15,6 +15,7 @@
 #'
 #' ## Export multiple tables
 #' save_tables(list(tbl1, tbl2), c("tbl1", "tbl2"), dir="data", format="csv")
+#' @export
 save_tables <- function (tables, filenames, dir = NA, format = NA) {
 
   # sanity checks
