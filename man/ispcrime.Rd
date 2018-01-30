@@ -6,18 +6,18 @@
 \title{Crime in Illinois 2011-2015 from ISP.}
 \format{A data frame with 12 variables:
 \describe{
-\item{\code{year}}{year}
-\item{\code{county}}{county}
-\item{\code{violentCrime}}{total sum of violent crime, including murder, rape, roberry and aggravated assault}
-\item{\code{murder}}{count of murder}
-\item{\code{rape}}{count of rape}
-\item{\code{robbery}}{count of robbery}
-\item{\code{aggAssault}}{count of aggrevated assault}
-\item{\code{propertyCrime}}{total sum of property crime, including burglary, larceny-theft, motor vehicle-theft and arson}
-\item{\code{burglary}}{count of burglary}
-\item{\code{larcenyTft}}{count of larceny-theft}
-\item{\code{MVTft}}{count of motor vehicle-theft}
-\item{\code{arson}}{count ofarson}
+\item{\code{year}}{Calendar Year}
+\item{\code{county}}{County name}
+\item{\code{violentCrime}}{Total sum of violent crime, including murder, rape, roberry and aggravated assault}
+\item{\code{murder}}{Count of murder}
+\item{\code{rape}}{Count of rape}
+\item{\code{robbery}}{Count of robbery}
+\item{\code{aggAssault}}{Count of aggrevated assault}
+\item{\code{propertyCrime}}{Total sum of property crime, including burglary, larceny-theft, motor vehicle-theft and arson}
+\item{\code{burglary}}{Count of burglary}
+\item{\code{larcenyTft}}{Count of larceny-theft}
+\item{\code{MVTft}}{Count of motor vehicle-theft}
+\item{\code{arson}}{Count ofarson}
 }}
 \source{
 \url{https://www.isp.state.il.us/crime/ucrhome.cfm}

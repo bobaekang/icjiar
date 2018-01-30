@@ -3,7 +3,7 @@
 \docType{data}
 \name{regions}
 \alias{regions}
-\title{Regional Categories for Illinois counties.}
+\title{Regional Categories for Illinois Counties.}
 \format{A data frame with 2 variables: \code{region} and \code{county}}
 \source{
 \url{https://www.isp.state.il.us/crime/ucrhome.cfm}

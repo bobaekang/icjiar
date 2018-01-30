@@ -13,4 +13,5 @@ regions <- data.frame(
   county = c(northern, central, southern, "Cook")
 )
 
+# use data
 devtools::use_data(regions, overwrite = TRUE)

@@ -6,19 +6,19 @@
 \title{Crime in Illinois 2011-2015 from FBI.}
 \format{A data frame with 13 variables:
 \describe{
-\item{\code{year}}{year}
-\item{\code{county}}{county}
-\item{\code{violentCrime}}{total sum of violent crime, including murder, rape, roberry and aggravated assault}
-\item{\code{murder}}{count of murder}
-\item{\code{rape_old}}{count of rape, based on an old definition, until 2013}
-\item{\code{rape_new}}{count of rape, based on a new definition, from 2014 onward}
-\item{\code{robbery}}{count of robbery}
-\item{\code{aggAssault}}{count of aggrevated assault}
-\item{\code{propertyCrime}}{total sum of property crime, including  burglary, larceny-theft, motor vehicle-theft and arson}
-\item{\code{burglary}}{count of burglary}
-\item{\code{larcenyTft}}{count of larceny-theft}
-\item{\code{MVTft}}{count of motor vehicle-theft}
-\item{\code{arson}}{count ofarson}
+\item{\code{year}}{Calendar year}
+\item{\code{county}}{County name}
+\item{\code{violentCrime}}{Total sum of violent crime, including murder, rape, roberry and aggravated assault}
+\item{\code{murder}}{Count of murder}
+\item{\code{rape_old}}{Count of rape, based on an old definition, until 2013}
+\item{\code{rape_new}}{Count of rape, based on a new definition, from 2014 onward}
+\item{\code{robbery}}{Count of robbery}
+\item{\code{aggAssault}}{Count of aggrevated assault}
+\item{\code{propertyCrime}}{Total sum of property crime, including  burglary, larceny-theft, motor vehicle-theft and arson}
+\item{\code{burglary}}{Count of burglary}
+\item{\code{larcenyTft}}{Count of larceny-theft}
+\item{\code{MVTft}}{Count of motor vehicle-theft}
+\item{\code{arson}}{Count ofarson}
 }}
 \source{
 \url{https://ucr.fbi.gov/ucr-publications}

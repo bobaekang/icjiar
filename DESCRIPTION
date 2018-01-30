@@ -18,4 +18,6 @@ BugReports: https://github.com/bobaekang/icjiar/issues
 RoxygenNote: 6.0.1
 Imports:
     feather (>= 0.3.1),
-    data.table (>= 1.10.4)
+    data.table (>= 1.10.4),
+    sp (>= 1.2.5),
+    rgdal (>= 1.2.16)

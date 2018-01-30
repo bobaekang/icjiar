@@ -6,19 +6,19 @@
 #'
 #' @format A data frame with 13 variables:
 #' \describe{
-#' \item{\code{year}}{year}
-#' \item{\code{county}}{county}
-#' \item{\code{violentCrime}}{total sum of violent crime, including murder, rape, roberry and aggravated assault}
-#' \item{\code{murder}}{count of murder}
-#' \item{\code{rape_old}}{count of rape, based on an old definition, until 2013}
-#' \item{\code{rape_new}}{count of rape, based on a new definition, from 2014 onward}
-#' \item{\code{robbery}}{count of robbery}
-#' \item{\code{aggAssault}}{count of aggrevated assault}
-#' \item{\code{propertyCrime}}{total sum of property crime, including  burglary, larceny-theft, motor vehicle-theft and arson}
-#' \item{\code{burglary}}{count of burglary}
-#' \item{\code{larcenyTft}}{count of larceny-theft}
-#' \item{\code{MVTft}}{count of motor vehicle-theft}
-#' \item{\code{arson}}{count ofarson}
+#' \item{\code{year}}{Calendar year}
+#' \item{\code{county}}{County name}
+#' \item{\code{violentCrime}}{Total sum of violent crime, including murder, rape, roberry and aggravated assault}
+#' \item{\code{murder}}{Count of murder}
+#' \item{\code{rape_old}}{Count of rape, based on an old definition, until 2013}
+#' \item{\code{rape_new}}{Count of rape, based on a new definition, from 2014 onward}
+#' \item{\code{robbery}}{Count of robbery}
+#' \item{\code{aggAssault}}{Count of aggrevated assault}
+#' \item{\code{propertyCrime}}{Total sum of property crime, including  burglary, larceny-theft, motor vehicle-theft and arson}
+#' \item{\code{burglary}}{Count of burglary}
+#' \item{\code{larcenyTft}}{Count of larceny-theft}
+#' \item{\code{MVTft}}{Count of motor vehicle-theft}
+#' \item{\code{arson}}{Count ofarson}
 #' }
 #'
 #' @source \url{https://ucr.fbi.gov/ucr-publications}
@@ -31,25 +31,25 @@
 #'
 #' @format A data frame with 12 variables:
 #' \describe{
-#' \item{\code{year}}{year}
-#' \item{\code{county}}{county}
-#' \item{\code{violentCrime}}{total sum of violent crime, including murder, rape, roberry and aggravated assault}
-#' \item{\code{murder}}{count of murder}
-#' \item{\code{rape}}{count of rape}
-#' \item{\code{robbery}}{count of robbery}
-#' \item{\code{aggAssault}}{count of aggrevated assault}
-#' \item{\code{propertyCrime}}{total sum of property crime, including burglary, larceny-theft, motor vehicle-theft and arson}
-#' \item{\code{burglary}}{count of burglary}
-#' \item{\code{larcenyTft}}{count of larceny-theft}
-#' \item{\code{MVTft}}{count of motor vehicle-theft}
-#' \item{\code{arson}}{count ofarson}
+#' \item{\code{year}}{Calendar Year}
+#' \item{\code{county}}{County name}
+#' \item{\code{violentCrime}}{Total sum of violent crime, including murder, rape, roberry and aggravated assault}
+#' \item{\code{murder}}{Count of murder}
+#' \item{\code{rape}}{Count of rape}
+#' \item{\code{robbery}}{Count of robbery}
+#' \item{\code{aggAssault}}{Count of aggrevated assault}
+#' \item{\code{propertyCrime}}{Total sum of property crime, including burglary, larceny-theft, motor vehicle-theft and arson}
+#' \item{\code{burglary}}{Count of burglary}
+#' \item{\code{larcenyTft}}{Count of larceny-theft}
+#' \item{\code{MVTft}}{Count of motor vehicle-theft}
+#' \item{\code{arson}}{Count ofarson}
 #' }
 #'
 #' @source \url{https://www.isp.state.il.us/crime/ucrhome.cfm}
 "ispcrime"
 
 
-#' Regional Categories for Illinois counties.
+#' Regional Categories for Illinois Counties.
 #'
 #' Illinois counties are categorised into three larger regions: Northern,
 #' Central, and Southern. Note that the Cook county is of its own category.
@@ -58,3 +58,23 @@
 #'
 #' @source \url{https://www.isp.state.il.us/crime/ucrhome.cfm}
 "regions"
+
+
+#' Illinois Counties.
+#'
+#' A \code{SpatialPolygonsDataFrame} object containing the Illinois counties polygons with
+#' additional attributes. See "Format" below for more on the \code{data} table for
+#' the attributes.
+#'
+#' @format A data frame with 7 variables
+#' \describe{
+#' \item{\code{name}}{County name}
+#' \item{\code{id}}{ID number}
+#' \item{\code{type}}{Type of the county: Cook, Collar, Rural, or Urban}
+#' \item{\code{region}}{Region of the county: Central, North, or South}
+#' \item{\code{circuit}}{Illinois juditical circuit number}
+#' \item{\code{IDOC}}{Illinois Department of Correction code}
+#' \item{\code{FIPS}}{Federal Information Processing Standards code}
+#' }
+#'
+"counties"
