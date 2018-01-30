@@ -19,13 +19,11 @@
 save_tables <- function (tables, filenames, dir = NA, format = NA) {
 
   # sanity checks
-  if (!is.list(tables)) {
-    if(is.data.frame(tables)) {
-      tables <- list(tables)
-    } else {
-      stop("tables input must be a single data farme or a list of data frames.")
-    }
-  } else
+  if (is.data.frame(tables)) {
+    tables <- list(tables)
+  } else if (!is.list(tables)) {
+    stop("tables input must be a single data farme or a list of data frames.")
+  }
   if (!is.character(filenames)) {
     stop ("filenames input must be a character vector.")
   }
@@ -35,11 +33,14 @@ save_tables <- function (tables, filenames, dir = NA, format = NA) {
 
   # if dir is not NA, concatenate it before each filename
   if (!is.na(dir)) {
+    if (!is.character(dir)) {
+      stop("Invalid dir input. dir input must be NA or a character string.")
+    } else if(!dir %in% list.dirs(recursive = FALSE)) {
+      stop("Invalid dir input. dir input is not found in the current working directory.")
+    }
     for (i in 1:length(filenames)) {
       filenames[i] <- paste(dir, filenames[i], sep = "/")
     }
-  } else if (!is.character(dir)) {
-    stop("Invalid dir input. dir input must be NA or a character string.")
   }
 
   # save tables according to the format input
