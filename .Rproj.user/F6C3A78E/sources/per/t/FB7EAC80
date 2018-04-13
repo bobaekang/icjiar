@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1518717155433.000,
+    "dirty" : false,
+    "encoding" : "ISO8859-1",
+    "folds" : "",
+    "hash" : "1132297169",
+    "id" : "FB7EAC80",
+    "lastKnownWriteTime" : 1518719150,
+    "last_content_update" : 1518719151236,
+    "path" : "X:/_icjia_github/icjia-r-workshop/notes/module1_notes.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "6,25",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,446 @@
+---
+title: "R Workshop: Module 1"
+author: "Bobae Kang"
+date: "December 31, 2017"
+output:
+  html_document:
+    self_contained: false
+    toc: TRUE
+    toc_float	:	TRUE
+    toc_depth: 2
+    includes:
+      after_body: ../include_footer.html
+css: ../css/style.css
+---
+<!-- fontawesome CDN -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- logo -->
+<div class="logo">
+  <a href="http://www.icjia.state.il.us/"><img src="../images/icjia.png" alt="ICJIA logo"></img></a>
+</div>
+
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(echo = TRUE)
+```
+
+This page contains the notes for **R Workshop Module 1: Introduction to R**, which is part of the R Workshop series prepared by ICJIA Research Analyst [Bobae Kang](http://www.icjia.state.il.us/biographies/bobae-kang) to enable and encourage ICJIA researchers to take advantage of R, a statistical programming language that is one of the most powerful modern research tools.
+
+### Links
+Click [**here**](../index.html) to go to the workshop **home page**.
+
+Click [**here**](../modules.html) to go to the workshop **Modules page**.
+
+Click [**here**](../slides/module1_slides.html) to view the accompanying **slides for Module 1**.
+
+Navigate to the other workshop materials:
+
+* **Module 2: R basics**
+    * Part 1 ([**slides**](../slides/module2_slides1.html), [**note**](module2_notes1.html))
+    * Part 2 ([**slides**](../slides/module2_slides2.html), [**note**](module2_notes2.html))
+* **Module 3: Data analysis with R**
+    * Part 1 ([**slides**](../slides/module3_slides1.html), [**note**](module3_notes1.html))
+    * Part 2 ([**slides**](../slides/module3_slides2.html), [**note**](module3_notes2.html))
+* **Module 4: Data visualization with R**
+    * Part 1 ([**slides**](../slides/module4_slides1.html), [**note**](module4_notes1.html))
+    * Part 2 ([**slides**](../slides/module4_slides2.html), [**note**](module4_notes2.html))
+* **Module 5: Statistical modeling with R**
+    * Part 1 ([**slides**](../slides/module5_slides1.html), [**note**](module5_notes1.html))
+    * Part 2 ([**slides**](../slides/module5_slides2.html), [**note**](module5_notes2.html))
+* **Module 6: Sharing your analysis and more**
+    * Part 1 ([**slides**](../slides/module6_slides1.html), [**note**](module6_notes1.html))
+    * Part 2 ([**slides**](../slides/module6_slides2.html), [**note**](module6_notes2.html))
+
+
+***
+
+# Introduction to the Workshop
+
+```{r echo=FALSE, out.width="60%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("../images/icjia-x-r.png")
+```
+
+
+## Instructor (Bobae Kang)
+
+My name is Bobae Kang and I am a Research Analyst at ICJIA. I have been using R for more than one year at the time of writing, and I believe that R is one of the most powerful modern computational tools for research and data analysis. I have developed this workshop to invite my colleagues and fellow researchers at ICJIA to start taking advantage of this amazing tool. See [About Me](../about.html) to read more about me.
+
+## Workshop objectives
+
+This workshop is developed to offer a gentle introduction to the R programming language for ICJIA researchers. More specifically, the goal of this workshop is to enable and empower its participants to:
+
+* Import and manipulate tabular data files using R;
+* Create simple data visualizations (scatterplot, histogram, bar chart, line chart, etc.) to extract insight from data using R;
+* Perform basic statistical analysis using R;
+* Generate a report on a simple data analysis task using R;
+* Understand the basic elements of the R programming language;
+* Employ the programmatic approach to research and data analysis projects; and
+* Leverage online resources to find solutions to specific questions on using R for a given task.
+
+Of course, mastering any of the listed skills requires more than this workshop. *This workshop alone will not make any of its participants an expert R programmer.* However, it will help the participants to get started and provide them with the basic skills and techniques in using R for research and data analysis. Ultimately, this workshop seeks to help the participants to gain the knowledge and confidence necesary to learn what they need to know for their own research projects.
+
+
+## A programming approach to research[^1]
+
+[^1]: This section is inspired by Dr. Benjamin Soltoff's [Compuation for Social Sciences course at the University of Chicago](http://cfss.uchicago.edu), and much of this section's contents is drawn from his work albeit with modifications. 
+
+Among the core objectives of this workshop is to convince its participants to try a different approach to research: **a programming (or programmatic) approach**.
+
+Many researchers and analysts rely on "graphical user interface" (GUI) tools where a lot of point-and-clicks and drag-and-drops happens. This is understandable since GUI tools offer a highly intuitive way of interacting with data. Also, learning a programming language often appears to be a daunting task to many. However, adopting a programming approach has strong advantages that could far outweigh the pain of learning it--which, by the way, can be fun as well!
+
+### GUI workflow vs. programmatic workflow
+Before discussing specific advantages of the programmatic approach to research, let compare two different workflows--one using GUI, and the other programmatic--with examples.
+
+Here we introduce two reserchers:
+
+<div class="row">
+<div class="col-xs-3" style="margin: 0; padding: 0">
+```{r echo=FALSE, out.width="100%"}
+include_graphics("../images/archer.png")
+```
+</div>
+<div class="col-xs-6" style="margin: 0; padding: 0">
+* **Sterling Malory Archer** is an ICJIA research analyst relying almost explicitly on the GUI tools for his research projects.
+</div>
+</div>
+<div class="row">
+<div class="col-xs-3" style="margin: 0; padding: 0">
+```{r echo=FALSE, out.width="100%"}
+include_graphics("../images/lana.png")
+```
+</div>
+<div class="col-xs-6" style="margin: 0; padding: 0">
+* **Lana Anthony Kane**, another ICJIA research analyst, has adopted a programming approach to research.
+</div>
+</div>
+
+Let us now compare how these two work differently for a simple data analysis project.
+
+### Sterling, a typical GUI-oriented workflow
+
+1. Sterling finds out that he needs Uniform Crime Reports (UCR) data from Illinois State Police (ISP) website for his project. In fact, he needs data for the five most recent years He goes to the website and download each file separately, which lands on the default Downloads folder.
+2. Sterling browses to the Downloads folder and opens the files in MS Excel:
+    * Sterling wants to have data for all years in a single spreadsheet. So he copy pastes multiple times to have all in the same place.
+    * Sterling then realizes that he needs only a few variables for his analysis. He deletes all columns but the ones he needs, and saves it (`mydata.xlsx`) to the research directory that he creates as he is saving the combined data file.
+3. Sterling opens the combined data in SPSS:
+    * Sterling runs a quick regression analysis and checks the results. The model fit doesn't look good--oops, he should have included another variable in the model.
+4. Sterling so goes back to the Downloads folder for the original files, spends some minutes to find the downloaded files (there are so many files in the Downloads folder!), opens all spreadsheets in Excel, and copy-and-pastes the desired column from them to the combined spreadsheet. He saves it as a separate file (`mydata2.xlsx`).
+5. Sterling opens the updated data file in SPSS and runs the model again with more point-and-clicks. Finally, the results look good.
+6. Sterling opens MS Word to write a report on his model output.
+    * He copy-and-pastes the model outputs and graphs from the SPSS report to the Word document.
+7. Sterling sends the report to his supervisor. Done!
+    * If his supervisor later comes to Sterling and asks him how he came to his conclusion, will Sterling remember all the steps he took? 
+
+### Lana, a programmatic workflow
+
+1. Before anything, Lana sets up a directory specifically for the project at hand and creates some sub-directories where different types of inputs and outputs will be stored. From past experience, Lana knows that she needs at lease the following sub-directories:
+    * `data`: to store data inputs
+    * `images`: to store image outputs 
+    * `reports`: to store report outputs
+2. Lana goes to the ISP website to find where the UCR data files are located. Then she writes a program to download and store them to the `data` subdirectory--*all at once!* She saves the R scrpt for the current program in the main directory.
+3. Lana writes a separate program that imports the data files and combines them into a single table. Then she takes a closer look at the table to identify which variables she needs, and writes a few more lines of code to select only the corresponding columns and save the modified version of data table into the `data` folder. Again, she saves the R script in the main directory.
+4. Lana creates another separate program, which imports the clean data file, fits a regression model, and generates some nice-looking plots. The plots are saved in the `images` folder.
+    * Oops, the model fit does not look good. She should have included another variable. Lana goes back to the tab for the data cleaning script and, *by tweaking a few lines in her code*, quickly re-creates the data file.
+    * Lana then comes back to the modeling script tab and, *without changing a single line of code*, simply re-runs it to get satisfying regression results and plots.
+    * She saves the script in the main directory.
+5. Lana creates a R Markdown file for her report. Since R Markdown can easily incorporate R code, no need to copy-and-paste the results. Lana *knits* the report into a nice-looking html document, now saved in `reports` subdirectory. The R Markdown script is also saved.
+6. Lana sends the report to her supervisor with a link to her project directory. Done!
+    * If the supervisor later comes back to Lana and questions how she came to her conclusion, everything is there and she has nothing to hide!
+
+## Benefits of a programming approach
+
+### Automation
+
+At its core, a programming approach to research seeks for automating the work of research as much as possible. In practice, automation means implementing the research work in programs (e.g., R script files), which will run later to automatically execute the work. This is opposite to the GUI-based approach where each and every step of the research process takes place in an interactive fashion. By automating certain tasks, a researcher can rest assured that she will get consistent results when she revisit her work or share it with others.
+
+
+### Modularity
+
+> In software design, modularity refers to a logical partitioning of the "software design" that allows complex software to be manageable for the purpose of implementation and maintenance.<br> - ["Modularity", Wikipedia](https://en.wikipedia.org/wiki/Modularity)
+
+A programming approach to research enables researchers to acheive a great degree of modularity, where a researcher can break down different stages or steps of research work into smaller but meaningful parts. In our example, this is shown by Lana's writing separate programs for collecting, clearning, and analyzing her data. The benefit of modularity is clear here. When Lana had to make changes on her data clearning, she only had to change the part of the program that is relevant to the change while leaving everything else pretty much intact--a great gain in efficiency.
+
+In fact, a researcher may accomplish a greater degree of modularity, for instance, by writing custom functions that can be reused in various steps of the project--or even in another project!
+
+### Reproducibiltiy
+
+> Reproducibility refers to the ability of a researcher to duplicate the results of a prior study using the same materials and procedures as were used by the original investigator. [...] Reproducibility is a minimum necessary condition for a finding to be believable and informative.<br> - [U.S. NSF Subcommittee on Replicability in Science](https://www.nsf.gov/sbe/AC_Materials/SBE_Robust_and_Reliable_Research_Report.pdf)
+
+Although it may be possible to ensure reproducibility with a GUI-oriented approach it is no less than an uphill battle, since each step in the procedure has to be documented thoroughly and separately. Also, there is little guarantee that researchers who come later will follow the directions strictly as intended by the original researcher. In contrast, the work of research stored in a program, or a set of programs, is highly reproducible. Replicating such a work does not rely on human interpretation of the documented procedure. Rather, the computer simply and faithfully follows the directions inscribed in the program.
+
+A high degree of reproducibility can also greatly enhance productivity in a collaborative project. Its co-researchers can simply share the code that has all the information about what steps to take, which leaves little room to the possibility of  miscommunication while allowing the researchers to focus on what is important.  
+
+### Version control
+
+The notion of version control refers to the practice of managing changes in a document or a program in a systematic fashion. One major benefit of version control is that it can protect the work of research from unwanted changes, such as mistakenly deleting files, as such changes can be easily identified and reverted. 
+
+Although the topic of version control is beyond the scope of this workshop, suffice it to note that a programming approach to research makes it easy to implement version control in research as there exist many excellent version control systems available free of charge. Git is the most popular of such systems; [read its documentation](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control) to learn more about Git.
+
+
+***
+
+# Introducing R
+
+```{r echo=FALSE, out.width="35%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+print("Hellow World!")
+include_graphics("https://www.r-project.org/logo/Rlogo.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.r-project.org/logo/">r-project.org</a>
+</p>
+
+
+## What is R?
+
+> "R is a language and environment for statistical computing and graphics." - The R Foundation
+
+* *Built for* data analysis and visualization
+
+### Example: Statistical modeling in R
+Import data and run a quick linear regression
+
+### Example: Data visualization in R
+Use ggplot to generate a quick bar plot
+
+* One of the the most popular choices of programming language among academic researchers and data scientists
+    * The following figure captures the growth of R in the recent years, compared to other programming languages. Although the data used to generate this figure does not provide the whole picture, it certainly reflects the reality where R has established itself as one of the most popular tool for researchers and data analysts.
+
+```{r echo=FALSE, out.width="80%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://zgab33vy595fw5zq-zippykid.netdna-ssl.com/wp-content/uploads/2017/10/plot_tags_time-1-675x675.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: David Robinson, 2017, <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">"The Impresseive Growth of R"</a>
+</p>
+
+## Why R?
+
+* Open source (free!)
+    * Being open source also means that its source code, much of which is written in C and Fortran as well as R itself, is open for anyone to review and (albeit rarely) contribute.
+* Built for statistical analysis
+    * R, at its very core, is designed for statistical computing. As such, a wide range of statistical and graphical techniques, which are often offered as preminum add-ons in other commercial tools, are part of the language's core pacakge.
+* Reproducible and transparent
+    * Saving one's R code as an R script can be used to easily reproduce any data manipulation and analysis, ensuring the maximal clarity regarding which inputs are used for analysis and which steps are taken to generate the output. Collaborators can share their work in the R script format to quickly reach a shared understanding of the progress.
+    * As stated above, R is an open source. This open-source nature of R gives the language the level of transparency that other commercial softwares cannot afford. Also most of R packages are also open source, making it possible for any interested user to see precisely how things work under the hood.
+* Extensible through powerful third-party packages
+* Supported by its active user community
+    * The strong R community is often considered as one of the key advantages of using the language.[^2]
+* Enabling researchers to tackle a variety of tasks using a *single* platform
+    * Data manipulation and analyiss
+    * Basic and advanced statistical modeling
+    * Publication-ready data visualization
+    * Generating reports in various formats (html webpage, MS word, PDF)
+    * Slideshows, websites, interactive dashboards, etc.
+
+[^2]: See [**this article**](https://www.r-bloggers.com/the-r-community-is-one-of-rs-best-features/) published on R-bloggers for more on the R community.
+
+
+## Comparisons
+
+### R vs Excel
+<div class="row">
+<div class="col-xs-2">
+```{r echo=FALSE, out.width="100%"}
+include_graphics("../images/excel-logo.png")
+```
+</div>
+<div class="col-xs-10">
+* License cost
+    * Although often taken for granted, the MS Office Suite is in fact not free. In contrast, **R is free.** (Of course, this may be a moot point since other MS Office Suite products are well loved and widely used on daily basis.) 
+* Speed and scalability
+    * Excel is slow, and its performance quickly deteriorates as the data size grows. R offers many tools highly optimized to work with large data.
+    * Excel has limits on the number of rows and columns on a worksheet (1,048,576 rows by 16,384 columns). R does not.
+* Visualization
+    * While Excel provides some basic visualzation options, it is difficult in Excel to create highly customized and publication-quality plots. R can achieve this with only several lines of code.
+* Complex and advanced analysis
+    * Data manipulation capability of R is simply superior to that of Excel.
+    * Although Excel does offer a variety of built-in functions for data analysis to many people's surprise, users are still limited to the built-in options. Not only R comes with advanced data analysis functionalities, they can also be easily exended with add-on pacakges.
+* Reproducibility
+    * Reproducibility can be achieved in Excel to only a limited extent, any marginally complex analysis in Excel becomes extremely difficult to reproduce.
+</div>
+</div>
+
+### R vs SPSS
+
+<div class="row">
+<div class="col-xs-2">
+```{r echo=FALSE, out.width="100%"}
+include_graphics("../images/spss-logo.png")
+```
+</div>
+<div class="col-xs-10">
+* License cost (again)
+    * At the time of writing, the Base pricing option for SPSS is $99 per user per month. In addition, add-ons for other advanced functionalities must be purchased separately.[^3] **R is free.**
+* Syntax
+    * SPSS provides Syntax to programmatically perform data clearing, analysis and statistical modeling tasks. However, it is often noted that the grammatical/syntactic structure of SPSS Syntax is difficult to use (especially for complex operations) and often at odds with the programming standards in general.[^4] R, on the other hand, follows much of the standard grammar of modern programming languages. In addition, many tutorials on the basics of R language are readily available.
+* Visualization
+    * Although SPSS offers basic visualization options for commonly used charts and graphs, just as in Excel, only minimal customization is available and the outputs are little better than Excel graphs.
+* Reporting
+    * SPSS is capable for quickly generating a report on the data, but the output is merely functional. On the other hand, R offers RMarkdown documents that can be used to generate highly customized, publication-ready reports and articles in various formats: html webpage, MS Word, and PDF document.
+    
+</div>
+</div>
+
+[^3]: See the official SPSS [**Pricing page**](https://www.ibm.com/products/spss-statistics/pricing) for more information.
+
+[^4]: See [**this Stack Overflow thread**](https://stackoverflow.com/questions/3787231/r-and-spss-difference) and [**this Reddit thread**](https://www.reddit.com/r/statistics/comments/65zccb/should_i_learn_spss_or_r/) for more on this point.
+
+### R vs Tableau
+
+<div class="row">
+<div class="col-xs-2">
+```{r echo=FALSE, out.width="100%"}
+include_graphics("../images/tableau-logo.png")
+```
+</div>
+<div class="col-xs-10">
+* License cost (DUH!)
+    * At the time of writing, the Professional Edition of Tableau Desktop software costs $70 per user per month. Also, to store data sources and workbooks securely, an additional cost of $35 per user per month for Tableau Server must be paid.[^5] **R is free.**
+* Reproducibility
+    * Tableau is first and foremost a Graphic User Interface tool. Accordingly, communicating the process of making the workbook is much difficult in Tableau although it is possible to share Tableau workbooks with others. (See above for more on the benefits of reproducibility.)
+* Data manipulation
+    * Although Tableau offers some useful data manipulation features, its focus is visualization. As a result, Tableau's data manipulation features are limited to meet the real-life needs and its users often need to rely on another tool to prepare data for use in Tableau.[^6]
+    * It is telling that Tableau offers an R integration functionality to create complex parameters. If this is the case, why not use R itself in its native environment?
+* Complex and advanced analysis
+    * Tableau's focus of quick-and-simple data visualization makes the tool largely unfit for conducting and thereby visualizing complex data analysis and statistical modeling results. R, on the other hand, is fully capable of handle both tasks of high-quality data visualization and advanced data analysis as well as modeling, either separately or jointly.
+</div>
+</div>
+
+[^5]: See the official Tableau [**Pricing page**](https://www.tableau.com/pricing) for more information.
+
+[^6]: See [**this article from AIM Consulting**](https://aimconsulting.com/insights/blog/1-mistake-customers-make-tableau/) for more on the limitation of Tableau's data manipulation functionality with an example.
+
+This is not to say that these tools (Excel, SPSS, and Tableau) are simply inferior to R in all aspects. Each software is designed with a specific set of tasks and comes with the ease of use for the right tasks. Furthermore, compared to these tools, R has a relatively steep learning curve, which makes it difficult for anyone without sufficient background knowledge to quickly master and use it for real tasks.
+
+Nonetheless, R is a highly performant, versatile, and flexible tool for research and data analysis that is also largely compatible with any of the tools above. That said, R is a great addition to any researcher's toolbox, and it can easily be the most preferred choice of tool.
+
+***
+
+# RStudio
+
+```{r echo=FALSE, out.width="30%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-250.png")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.rstudio.com//">RStudio</a>
+</p>
+
+## What is RStudio? Why use it?
+
+* Best Integrated Development Environment (IDE) for R
+    * Although there are other IDEs supporting R, RStudio is a *de facto* standard tool in the R community and comes with many great features to extend R's power beyond statistical computing.
+* Powerful and convenient features
+    * Advanced debugging tools
+    * RMarkdown integration
+    * Shiny integration
+    * R Presentation integration
+* Interactive workflow
+* Open source (again!)
+    * Although RStudio, Inc. offers paid options for the IDE, which comes with additional support, the open source version, which is free of charge, can meet practicaly all needs of any researcher.
+* ... and many more!
+
+## RStudio overview
+
+```{r echo=FALSE, out.width="100%"}
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/3/39/Structure_of_Rstudio.jpeg")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+</p>
+
+### Source editor pane
+
+* Write and edit R scripts
+
+### Console pane
+
+* Interactively run R commands
+
+### Environment/history pane
+
+* **Environment**: view objects in the global environment
+* **History**: search and view command history
+
+### Files/Plots/Packages/Help pane
+
+* **Files**: navigate directories
+* **Plots**: view generated plots
+* **Packages**: manage installed packages in the library
+* **Help**: view help documentations for any package/function
+
+## Customization
+
+### Panes
+
+The size and position of panes can be customized. On the top right of each pane, there are buttons to adjust the pane size. Also, place your mouse pointer/cursor on the border line between panes and when the pointer changes its shape, click and drag to adjust the pane size. For more options, go to **View > Panes** on the menu bar. Alternatively, try **Tools > Global Options > Pane Layout**.
+
+### Appearances
+
+The overall appearance can be customized as well. Go to **Tools > Global options > Appearnce** on the menu bar to change themes, fonts, and more. 
+
+***
+
+# Basic Setup
+## Installing R
+
+* Visit [**https://cran.r-project.org/**](https://cran.r-project.org/)
+* Or simply google "download R" to find the link to download page.
+* *Installation requires the Administrator account*; talk to DoIT!
+
+* Also, check out "Install R" [**tutorial video**](https://vimeo.com/203516510) by RStudio, Inc.
+
+## Installing RStudio
+
+* Visit [**https://www.rstudio.com/products/rstudio/download/**](https://www.rstudio.com/products/rstudio/download/)
+* Or simply google "download Rstudio" to find the link to download page.
+* Agin, *installation requires the Administrator account*; talk to DoIT!
+
+* Also, check out "Install RStudio" [**tutorial video**](https://vimeo.com/203516968) by RStudio, Inc.
+
+***
+# Workshop Overview
+
+```{r echo=FALSE, out.width="50%", out.extra='style="display: block; margin: auto; box-shadow: none;"'}
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/c/c4/Cartoon-313457_640.jpg")
+```
+<p style="font-size:0.5em; text-align: center; color: #777;">
+Source: <a href="https://www.wikimedia.org//">Wikimedia.org</a>
+</p>
+
+## Module 2
+### R basics 
+Here, participants will learn the basic building blocks of R language. Once participants gain some knowledge in the fundamental topics, they will be introduced to the popular `tidyverse` framework and provided with a recommendation as to a "good" style for coding in R.
+
+This module consists of the following two parts:
+
+#### Part 1: Fundamental building blocks of R programming
+#### Part 2: Gearing up for data analysis in R
+
+## Module 3
+### Data analysis in R
+This module focuses on manimuplating and transforming tabular data using R. Participants will learn how to import data into R environment and use common `tidyverse` syntax to clean and analyze data. Specifically, core functions from dplyr, tidyr, stringr, and lubridate packages will be covered.
+
+This module consists of the following two parts:
+
+#### Part 1: Getting started with tidyverse
+#### Part 2: More on data manipulation
+
+## Module 4
+### Data visualization in R
+In this module, participants will get started with generating plots to visually present and communicate insights from data. The main focus of this module is the popular ggplot2 package. Participants will also be introduced to some options for generating maps and interactive plots.
+
+This module consists of the following two parts:
+
+#### Part 1: The Grammar of Graphics
+#### Part 2: Advanced visualiation
+
+## Module 5
+### Statistical modeling in R
+In this module, participants will learn how to conduct basic statistical analysis with R. 
+
+## Module 6
+### Sharing your analysis and more
+This module will introduce participants to various ways to share their work by using R Markdown, R Presentation, and Shiny. 
+
+
