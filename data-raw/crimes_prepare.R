@@ -3,6 +3,10 @@ library(dplyr)
 # library(foreign)
 
 
+# get standard county names
+source("std_county_names.R")
+
+
 # get file paths
 dirname = "crimes"
 if (!dir.exsits(dirname)) {
@@ -113,13 +117,28 @@ dfs_isp <- lapply(paths_isp, read_isp)
 
 
 # combine each into a single table
-df_fbi <- do.call("rbind", dfs_fbi)
-df_isp <- do.call("rbind", dfs_isp)
+crimes_fbi <- do.call("rbind", dfs_fbi)
+crimes_isp <- do.call("rbind", dfs_isp)
 
 
-# export files
-write.csv(df_fbi, "crimes_fbi.csv")
-write.csv(df_isp, "crimes_isp.csv")
+# redo county names
+crimes_fbi <- crimes_fbi %>%
+  arrange(year, county) %>%
+  mutate(
+    county = ifelse(
+      county %in% c("DuPage", "Dupage"),
+      "Du Page",
+      county
+    )
+  )
+crimes_isp <- crimes_isp %>%
+  arrange(year, county) %>%
+  mutate(county = rep(county_std, nrow(.) / 102))
+
+
+# export data
+write.csv(crimes_fbi, "crimes_fbi.csv")
+write.csv(crimes_isp, "crimes_isp.csv")
 
 
 # clear environmet
