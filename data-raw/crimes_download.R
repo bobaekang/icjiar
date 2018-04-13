@@ -1,50 +1,3 @@
-# get URLs: isp
-isp_url_df <- data.frame(
-  url = paste0(
-    "http://www.isp.state.il.us/docs/cii/",
-    c(
-      "cii15/ds/CrimeData_15_14.xlsx",
-      "cii14/ds/IndexCrimeDrugArrestData_14_13.xlsx",
-      "cii13/ds/IndexCrimeOffenses_Data_13_12.xlsx",
-      "cii12/ds/Internet_Crime_12_11.xlsx",
-      "cii11/ds/Internet_Crime_11_10.xls",
-      "cii09/db/Internet_Crime0908.dbf",
-      "cii08/db/Internet_Crime0807.dbf",
-      "cii07/db/Internet_Crime0706.dbf",
-      "cii06/db/Internet_Crime0605.dbf",
-      "cii05/db/internet_crime0504.dbf",
-      "cii04/db/internet_crime04_03.dbf",
-      "cii03/db/internet_crime03_02.dbf",
-      "cii02/db/internet_crime02_01.dbf",
-      "cii01/db/IndexOffenses2001,2000.dbf",
-      "cii00/db/cii00data.dbf",
-      "cii00/db/cii99data.dbf"
-    )
-  ),
-  filename = paste0(
-    "isp_",
-    c(
-      "2015_14.xlsx",
-      "2014_13.xlsx",
-      "2013_12.xlsx",
-      "2012_11.xlsx",
-      "2011_10.xls",
-      "2009_08.dbf",
-      "2008_07.dbf",
-      "2007_06.dbf",
-      "2006_05.dbf",
-      "2005_04.dbf",
-      "2004_03.dbf",
-      "2003_02.dbf",
-      "2002_01.dbf",
-      "2001_00.dbf",
-      "2000.dbf",
-      "1999.dbf"
-    )
-  ),
-  stringsAsFactors = FALSE
-)
-
 # get URLs: FBI
 fbi_url_df <- data.frame(
   url <- paste0(
@@ -75,6 +28,50 @@ fbi_url_df <- data.frame(
 )
 
 
+# get URLs: isp
+isp_url_df <- data.frame(
+  url = paste0(
+    "http://www.isp.state.il.us/docs/cii/",
+    c(
+      "cii15/ds/CrimeData_15_14.xlsx",
+      "cii14/ds/IndexCrimeDrugArrestData_14_13.xlsx",
+      "cii13/ds/IndexCrimeOffenses_Data_13_12.xlsx",
+      "cii12/ds/Internet_Crime_12_11.xlsx",
+      "cii11/ds/Internet_Crime_11_10.xls",
+      "cii09/db/Internet_Crime0908.dbf",
+      "cii08/db/Internet_Crime0807.dbf",
+      "cii07/db/Internet_Crime0706.dbf",
+      "cii06/db/Internet_Crime0605.dbf",
+      "cii05/db/internet_crime0504.dbf",
+      "cii04/db/internet_crime04_03.dbf",
+      "cii03/db/internet_crime03_02.dbf",
+      "cii02/db/internet_crime02_01.dbf",
+      "cii01/db/IndexOffenses2001,2000.dbf"
+    )
+  ),
+  filename = paste0(
+    "isp_",
+    c(
+      "2015_14.xlsx",
+      "2014_13.xlsx",
+      "2013_12.xlsx",
+      "2012_11.xlsx",
+      "2011_10.xls",
+      "2009_08.dbf",
+      "2008_07.dbf",
+      "2007_06.dbf",
+      "2006_05.dbf",
+      "2005_04.dbf",
+      "2004_03.dbf",
+      "2003_02.dbf",
+      "2002_01.dbf",
+      "2001_00.dbf"
+    )
+  ),
+  stringsAsFactors = FALSE
+)
+
+
 # create directory if not already existing
 dirname <- "crimes"
 
@@ -96,8 +93,8 @@ download_files <- function(df) {
 }
 
 if (!length(list.files(dirname))) {
-  download_files(isp_url_df)
   download_files(fbi_url_df)
+  download_files(isp_url_df)
 }
 
 
