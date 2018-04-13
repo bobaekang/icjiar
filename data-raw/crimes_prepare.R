@@ -10,33 +10,33 @@ source("std_county_names.R")
 # get file paths
 dirname = "crimes"
 if (!dir.exsits(dirname)) {
-  source("crime_download.R")  
+  source("crime_download.R")
 }
 
 paths_fbi <- paste0(dirname, "/", list.files(path = dirname, pattern = "^fbi.*"))
 paths_isp <- paste0(dirname, "/", list.files(path = dirname, pattern = "^isp.*"))
 
 
-# define functions to read files 
+# define functions to read files
 read_fbi <- function(path) {
   newnames <- c("county", "violent_crime", "murder", "rape_old", "rape_new", "robbery", "assault", "property_crime", "burglary", "larcenytft", "mvtft", "arson", "year")
   output <- readxl::read_excel(path, skip = 5) %>%
     select(2:ncol(.)) %>%
     arrange(County) %>%
-    mutate(year = as.integer(gsub("\\D+", "", path))) 
-  
+    mutate(year = as.integer(gsub("\\D+", "", path)))
+
   if (ncol(output) == 12) {
     output <- output %>%
       mutate(rape_new = NA) %>%
       select(1:3, 13, 4:12)
   }
-  
+
   colnames(output) <- newnames
-  
+
   output <- output %>%
     filter(!is.na(county)) %>%
-    select(county, year, violent_crime:arson)
-  
+    select(year, county, violent_crime:arson)
+
   return(output)
 }
 
@@ -47,7 +47,7 @@ read_isp <- function(path) {
   if (grepl("2015", path)) {
     target_cols <- c("CH", "Rape", "Rob", "AggBA", "Burg", "Theft", "MVT", "Arson")
   }
-  
+
   if (grepl("dbf$", path)) {
     output <- foreign::read.dbf(path)
     output <- output %>%
@@ -74,20 +74,20 @@ read_isp <- function(path) {
     }
     if (grepl("2011", path)) {
       output <- readxl::read_excel(path, skip = 2, na = c("", "--"))
-      
+
       output10 <- clean(output, "10") %>% mutate(year = 2010L)
       output11 <- clean(output, "11") %>% mutate(year = 2011L)
-      
+
       colnames(output10) <- c(newnames, "year")
       colnames(output11) <- c(newnames, "year")
-      
+
       output <- rbind(output10, output11) %>%
         mutate(
           county = as.character(county),
           violent_crime = murder + rape + robbery + assault,
           property_crime = burglary + larcenytft + mvtft + arson
         ) %>%
-        select(county, year, violent_crime, murder:assault, property_crime, burglary:arson)
+        select(year, county, violent_crime, murder:assault, property_crime, burglary:arson)
 
       return(output)
     } else {
@@ -95,9 +95,9 @@ read_isp <- function(path) {
       output <- clean(output, yearnum)
     }
   }
-  
+
   colnames(output) <- newnames
-  
+
   output <- output %>%
     mutate(
       county = as.character(county),
@@ -105,8 +105,8 @@ read_isp <- function(path) {
       violent_crime = murder + rape + robbery + assault,
       property_crime = burglary + larcenytft + mvtft + arson
     ) %>%
-    select(county, year, violent_crime, murder:assault, property_crime, burglary:arson)
-  
+    select(year, county, violent_crime, murder:assault, property_crime, burglary:arson)
+
   return(output)
 }
 
@@ -137,8 +137,8 @@ crimes_isp <- crimes_isp %>%
 
 
 # export data
-write.csv(crimes_fbi, "crimes_fbi.csv")
-write.csv(crimes_isp, "crimes_isp.csv")
+write.csv(crimes_fbi, "crimes_fbi.csv", row.names = FALSE)
+write.csv(crimes_isp, "crimes_isp.csv", row.names = FALSE)
 
 
 # clear environmet

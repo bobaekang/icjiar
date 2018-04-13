@@ -25,27 +25,28 @@ clean_pop <- function(pop, decade = "2000s") {
         value = "population",
         2:ncol(.)
       ) %>%
-      mutate(year = as.integer(substr(year, 3, 7)))
+      mutate(year = as.integer(substr(year, 3, 7))) %>%
+      select(year, county, population)
   }
-  
+
   if (decade == "2000s") {
     output <- pop %>%
       filter(county != "Illinois") %>%
       select(ncol(.), 1:(ncol(.) - 1)) %>%
       mutate(county = as.character(county)) %>%
       gather_years()
-    
+
     return(output)
   } else if (decade == "2010s") {
     output <- pop %>%
       select(3, 6:ncol(.))
-      
+
     colnames(output) <- c("county", paste0("X_", 2010:(2010 + ncol(output) - 2)))
-    
+
     output <- output %>%
       mutate(county = gsub(" County, Illinois", "", as.character(county))) %>%
       gather_years()
-    
+
     return(output)
   }
 }
@@ -65,4 +66,4 @@ populations <- populations %>%
 
 
 # export data
-write.csv(populations, "populations.csv")
+write.csv(populations, "populations.csv", row.names = FALSE)
