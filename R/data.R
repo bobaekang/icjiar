@@ -54,8 +54,8 @@
 #'
 #' The county-level crime data in Illinois from 2011 to 2015 extracted from
 #' the Federal Bureau of Investigation's Crime in the United States (CIUS)
-#' Uniform Crime Reports (UCR) publications. Use \code{crimes_fbi} for a more
-#' complete data.
+#' Uniform Crime Reports (UCR) publications. This will deprecate in future versions;
+#' Use \code{crimes_fbi} instead.
 #'
 #' @format A data frame with 13 variables:
 #' \describe{
@@ -82,7 +82,7 @@
 #'
 #' The county-level crime data in Illinois from 2011 to 2015 extracted from
 #' the Illinois State Police's Unifrom Crime Reports (UCR) annual reports.
-#' Use \code{crimes_isp} for a more complete data.
+#' This will deprecate in future versions; use \code{crimes_isp} instead.
 #'
 #' @format A data frame with 12 variables:
 #' \describe{
