@@ -121,15 +121,14 @@
 #' additional attributes. See "Format" below for more on the \code{data} table for
 #' the attributes.
 #'
-#' @format A data frame with 7 variables
+#' @format A data frame with 6 variables
 #' \describe{
 #' \item{\code{name}}{County name}
-#' \item{\code{id}}{ID number}
 #' \item{\code{type}}{Type of the county: Cook, Collar, Rural, or Urban}
 #' \item{\code{region}}{Region of the county: Central, North, or South}
 #' \item{\code{circuit}}{Illinois juditical circuit number}
-#' \item{\code{IDOC}}{Illinois Department of Correction code}
-#' \item{\code{FIPS}}{Federal Information Processing Standards code}
+#' \item{\code{idoc}}{Illinois Department of Correction code}
+#' \item{\code{fips}}{Federal Information Processing Standards code}
 #' }
 #'
 "counties"

@@ -1,3 +1,6 @@
+library(dplyr)
+
+
 # get standard county names
 source("data-raw/std_county_names.R")
 
@@ -9,13 +12,28 @@ counties <- sp::spTransform(
 )
 
 
-# change county names
-counties@data <- dplyr::arrange(
-  dplyr::mutate(counties@data, name = as.character(name)),
-  name
-)
-
-counties@data$name <- as.factor(county_std)
+# prepare data
+counties@data <- counties@data %>%
+  left_join(
+    data.frame(
+      name = county_std,
+      FIPS_CODE = as.factor(17000 + seq(1, 102*2, 2))
+    )
+  ) %>%
+  transmute(
+    name = name,
+    type = COUNTYTYPE,
+    region = ifelse(
+      as.character(CNTYNAM_LO) == "Cook", "Cook", ifelse(
+        as.character(REGION) == "South", "Southern", ifelse(
+          as.character(REGION) == "North", "Northern", "Central"
+        )
+      )
+    ),
+    circuit = CIRCUIT,
+    idoc = IDOC_CODE,
+    fips = FIPS_CODE
+  )
 
 
 # use data
