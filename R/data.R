@@ -25,15 +25,17 @@
 "crimes_fbi"
 
 
-#' Crime in Illinois 2001-2015 from ISP.
+#' Crime in Illinois 1982-2015 from ISP.
 #'
-#' The county-level crime data in Illinois from 2001 to 2015 extracted from
-#' the Illinois State Police's Unifrom Crime Reports (UCR) annual reports.
+#' The county-level crime data in Illinois from 1982 to 2015 downloaded from
+#' Illinois Criminal Justice Information Authority (ICJIA) website.
+#' The original dataset on the ICJIA website is named "I-UCR Violent Offenses".
 #'
-#' @format A data frame with 12 variables:
+#' @format A data frame with 13 variables:
 #' \describe{
 #' \item{\code{year}}{Calendar Year}
 #' \item{\code{county}}{County name}
+#' \item{\code{fips}}{FIPS county code}
 #' \item{\code{violent_crime}}{Total sum of violent crime, including murder, rape, roberry and aggravated assault}
 #' \item{\code{murder}}{Count of murder}
 #' \item{\code{rape}}{Count of rape}
@@ -46,7 +48,7 @@
 #' \item{\code{arson}}{Count ofarson}
 #' }
 #'
-#' @source \url{https://www.isp.state.il.us/crime/ucrhome.cfm}
+#' @source \url{http://www.icjia.state.il.us/research/overview#tab_research-data}
 "crimes_isp"
 
 
@@ -136,13 +138,14 @@
 
 #' Illinois Population Estimates by County
 #'
-#' Illinois population estimates by county from 2001 to 2017. Population data
-#' for the first ten years come from Illinois Center for Health Statistics.
-#' Population data for the following years use the latest Annual Estimates of
-#' the Resident Population by the U.S. Census Bureau.
+#' Illinois population estimates by county from 1970 to 2017.
+#' Estimates for years from 1970 and 2016 come from
+#' Illinois Criminal Justice Information Authority (ICJIA) website.
+#' The original dataset on the ICJIA website is named "Populations in Illinois Counties".
+#' The latest estimates for 2017 come from the U.S. Census Bureau website.
 #'
 #' @format A data frame with 3 variables: \code{year}, \code{county} and \code{population}
 #'
-#' @source \url{https://data.illinois.gov/dataset/539illinois_population_20002009} and
+#' @source \url{http://www.icjia.state.il.us/research/overview#tab_research-data} and
 #' \url{https://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=PEP_2017_PEPANNRES&prodType=table}
 "populations"
