@@ -25,15 +25,17 @@
 "crimes_fbi"
 
 
-#' Crime in Illinois 2001-2015 from ISP.
+#' Crime in Illinois 1982-2015 from ISP.
 #'
-#' The county-level crime data in Illinois from 2001 to 2015 extracted from
-#' the Illinois State Police's Unifrom Crime Reports (UCR) annual reports.
+#' The county-level crime data in Illinois from 1982 to 2015 downloaded from
+#' Illinois Criminal Justice Information Authority (ICJIA) website.
+#' The original dataset on the ICJIA website is named "I-UCR Violent Offenses".
 #'
-#' @format A data frame with 12 variables:
+#' @format A data frame with 13 variables:
 #' \describe{
 #' \item{\code{year}}{Calendar Year}
 #' \item{\code{county}}{County name}
+#' \item{\code{fips}}{FIPS county code}
 #' \item{\code{violent_crime}}{Total sum of violent crime, including murder, rape, roberry and aggravated assault}
 #' \item{\code{murder}}{Count of murder}
 #' \item{\code{rape}}{Count of rape}
@@ -46,7 +48,7 @@
 #' \item{\code{arson}}{Count ofarson}
 #' }
 #'
-#' @source \url{https://www.isp.state.il.us/crime/ucrhome.cfm}
+#' @source \url{http://www.icjia.state.il.us/research/overview#tab_research-data}
 "crimes_isp"
 
 
