@@ -1,7 +1,4 @@
 library(dplyr)
-# library(readxl)
-# library(foreign)
-
 
 # get standard county names
 source("std_county_names.R")
@@ -9,7 +6,7 @@ source("std_county_names.R")
 
 # get file paths
 dirname = "crimes"
-if (!dir.exsits(dirname)) {
+if (!dir.exists(dirname)) {
   source("crime_download.R")
 }
 
