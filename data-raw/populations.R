@@ -1,9 +1,13 @@
-# import data (new)
-populations <- read.csv("data-raw/populations.csv", fileEncoding="UTF-8-BOM")
+# get standard county names
+source("data-raw/std_county_names.R")
 
 
 # get pipe
 `%>%` <- dplyr::`%>%`
+
+
+# import data (new)
+populations <- read.csv("data-raw/populations.csv", fileEncoding="UTF-8-BOM")
 
 
 # modify data
@@ -21,6 +25,8 @@ populations <- populations %>%
       )
     )
   ) %>%
+  dplyr::arrange(year, county) %>%
+  dplyr::mutate(county = rep(county_std, nrow(.) / 102)) %>%
   dplyr::select(year, county, fips, population)
 
 
