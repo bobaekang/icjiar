@@ -25,9 +25,9 @@
 "crimes_fbi"
 
 
-#' Crime in Illinois 1982-2015 from ISP.
+#' Crime in Illinois 1982-2016 from ISP.
 #'
-#' The county-level crime data in Illinois from 1982 to 2015 downloaded from
+#' The county-level crime data in Illinois from 1982 to 2016 downloaded from
 #' Illinois Criminal Justice Information Authority (ICJIA) website.
 #' The original dataset on the ICJIA website is named "I-UCR Violent Offenses".
 #'
@@ -131,8 +131,13 @@
 #' \item{\code{circuit}}{Illinois juditical circuit number}
 #' \item{\code{idoc}}{Illinois Department of Correction code}
 #' \item{\code{fips}}{Federal Information Processing Standards code}
+#' \item{\code{fips}}{Federal Information Processing Standards code}
+#' \item{\code{rural_urban_2010}}{Rural/urban categorization based on 2010 Census data. See Ratcliffe et al. (2016)}
+#' \item{\code{rural_percentile_2010}}{Federal Information Processing Standards code}
 #' }
 #'
+#' @references
+#' \href{https://www2.census.gov/geo/pdfs/reference/ua/Defining_Rural.pdf}{Ratcliffe, M., Burd, C., Holder, K., and Fields, A. (2016). "Defining Rural at the U.S. Census Bureau: American Community Survey and Geography Brief".}
 "counties"
 
 

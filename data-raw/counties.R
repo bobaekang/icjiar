@@ -4,6 +4,9 @@ library(dplyr)
 # get standard county names
 source("data-raw/std_county_names.R")
 
+# get rural-urban categories
+rural_urban <- read.csv('data-raw/rural_urban.csv', stringsAsFactors=FALSE)
+colnames(rural_urban) <- c("fips", "county", "region", "rural_urban_2010", "rural_percentile_2010")
 
 # import shapefile
 counties <- sp::spTransform(
@@ -13,7 +16,8 @@ counties <- sp::spTransform(
 
 
 # prepare data
-counties@data <- counties@data %>%
+counties@data <-
+  counties@data %>%
   left_join(
     data.frame(
       name = county_std,
@@ -30,10 +34,11 @@ counties@data <- counties@data %>%
         )
       )
     ),
-    circuit = CIRCUIT,
-    idoc = IDOC_CODE,
-    fips = FIPS_CODE
-  )
+    circuit = as.integer(as.character(CIRCUIT)),
+    idoc = as.integer(as.character(IDOC_CODE)),
+    fips = as.integer(as.character(FIPS_CODE))
+  ) %>%
+  left_join(select(rural_urban, fips, rural_urban_2010, rural_percentile_2010))
 
 
 # use data
