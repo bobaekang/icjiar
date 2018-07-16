@@ -14,16 +14,24 @@ counties <- sp::spTransform(
   CRSobj = sp::CRS("+proj=longlat +ellps=GRS80")
 )
 
+# standard name to join
+to_join <-
+  counties@data %>%
+  distinct(CNTYNAM_LO, FIPS_CODE) %>%
+  arrange(CNTYNAM_LO) %>%
+  cbind(name = county_std) %>%
+  mutate(
+    county = as.character(CNTYNAM_LO),
+    name = ifelse(county == "LaSalle", "La Salle", as.character(name)),
+    name = ifelse(county == "Lake", "Lake", as.character(name))
+  ) %>%
+  distinct(FIPS_CODE, name)
+
 
 # prepare data
 counties@data <-
   counties@data %>%
-  left_join(
-    data.frame(
-      name = county_std,
-      FIPS_CODE = as.factor(17000 + seq(1, 102*2, 2))
-    )
-  ) %>%
+  left_join(to_join) %>%
   transmute(
     name = name,
     type = COUNTYTYPE,
