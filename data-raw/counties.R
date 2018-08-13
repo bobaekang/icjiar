@@ -20,11 +20,6 @@ to_join <-
   distinct(CNTYNAM_LO, FIPS_CODE) %>%
   arrange(CNTYNAM_LO) %>%
   cbind(name = county_std) %>%
-  mutate(
-    county = as.character(CNTYNAM_LO),
-    name = ifelse(county == "LaSalle", "La Salle", as.character(name)),
-    name = ifelse(county == "Lake", "Lake", as.character(name))
-  ) %>%
   distinct(FIPS_CODE, name)
 
 
@@ -42,7 +37,13 @@ counties@data <-
         )
       )
     ),
-    circuit = as.integer(as.character(CIRCUIT)),
+    # fix region information for Kankakee and LaSalle (08132018)
+    region = ifelse(
+      FIPS_CODE == 17091, "Central", ifelse(
+        FIPS_CODE == 17099, "Northern", region
+      )
+    ),
+    circuit = as.character(CIRCUIT),
     idoc = as.integer(as.character(IDOC_CODE)),
     fips = as.integer(as.character(FIPS_CODE))
   ) %>%
