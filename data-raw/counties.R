@@ -13,17 +13,6 @@ counties <- sp::spTransform(
   CRSobj = sp::CRS("+proj=longlat +ellps=GRS80")
 )
 
-<<<<<<< HEAD
-# standard name to join
-to_join <-
-  counties@data %>%
-  distinct(CNTYNAM_LO, FIPS_CODE) %>%
-  arrange(CNTYNAM_LO) %>%
-  cbind(name = county_std) %>%
-  distinct(FIPS_CODE, name)
-
-=======
->>>>>>> develop
 
 # prepare data
 counties@data <-

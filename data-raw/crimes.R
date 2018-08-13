@@ -1,6 +1,6 @@
 # define a function to standardize county names
 standardize_county <- function(df) {
-  county_to_fix <- c("De Kalb", "DuPage", "La Salle")
+  county_to_fix <- c("De Kalb", "Du Page", "La Salle")
 
   dplyr::mutate(
     df,
