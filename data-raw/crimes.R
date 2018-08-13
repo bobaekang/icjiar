@@ -1,11 +1,23 @@
+# define a function to standardize county names
+standardize_county <- function(df) {
+  county_to_fix <- c("De Kalb", "DuPage", "La Salle")
+
+  dplyr::mutate(
+    df,
+    county = as.character(county),
+    county = ifelse(county %in% county_to_fix, gsub(" ", "", county), county)
+  )
+}
+
+
 # import data (old)
-fbicrime <- read.csv("data-raw/fbicrime.csv")
-ispcrime <- read.csv("data-raw/ispcrime.csv")
+fbicrime <- standardize_county(read.csv("data-raw/fbicrime.csv"))
+ispcrime <- standardize_county(read.csv("data-raw/ispcrime.csv"))
 
 
 # import data (new)
-crimes_fbi <- read.csv("data-raw/crimes_fbi.csv")
-crimes_isp <- read.csv("data-raw/crimes_isp.csv")
+crimes_fbi <- standardize_county(read.csv("data-raw/crimes_fbi.csv"))
+crimes_isp <- standardize_county(read.csv("data-raw/crimes_isp.csv"))
 
 
 # use data

@@ -1,12 +1,11 @@
-library(dplyr)
+# get pipe
+`%>%` <- dplyr::`%>%`
 
-
-# get standard county names
-source("data-raw/std_county_names.R")
 
 # get rural-urban categories
 rural_urban <- read.csv('data-raw/rural_urban.csv', stringsAsFactors=FALSE)
 colnames(rural_urban) <- c("fips", "county", "region", "rural_urban_2010", "rural_percentile_2010")
+
 
 # import shapefile
 counties <- sp::spTransform(
@@ -14,6 +13,7 @@ counties <- sp::spTransform(
   CRSobj = sp::CRS("+proj=longlat +ellps=GRS80")
 )
 
+<<<<<<< HEAD
 # standard name to join
 to_join <-
   counties@data %>%
@@ -22,13 +22,15 @@ to_join <-
   cbind(name = county_std) %>%
   distinct(FIPS_CODE, name)
 
+=======
+>>>>>>> develop
 
 # prepare data
 counties@data <-
   counties@data %>%
-  left_join(to_join) %>%
-  transmute(
-    name = name,
+  dplyr::transmute(
+    name = as.character(CNTYNAM_LO),
+    name = ifelse(name == "DeWitt", "De Witt", name),
     type = COUNTYTYPE,
     region = ifelse(
       as.character(CNTYNAM_LO) == "Cook", "Cook", ifelse(
@@ -47,7 +49,9 @@ counties@data <-
     idoc = as.integer(as.character(IDOC_CODE)),
     fips = as.integer(as.character(FIPS_CODE))
   ) %>%
-  left_join(select(rural_urban, fips, rural_urban_2010, rural_percentile_2010))
+  dplyr::left_join(
+    dplyr::select(rural_urban, fips, rural_urban_2010, rural_percentile_2010)
+  )
 
 
 # use data

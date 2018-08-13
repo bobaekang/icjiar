@@ -1,7 +1,3 @@
-# get standard county names
-source("data-raw/std_county_names.R")
-
-
 # get pipe
 `%>%` <- dplyr::`%>%`
 
@@ -11,6 +7,8 @@ populations <- read.csv("data-raw/populations.csv", fileEncoding="UTF-8-BOM")
 
 
 # modify data
+county_to_fix <- c("De Kalb", "DuPage", "La Salle")
+
 populations <- populations %>%
   tidyr::gather(
     key = "year",
@@ -23,10 +21,11 @@ populations <- populations %>%
       fips < 10, paste0("1700", fips), ifelse(
         fips < 100, paste0("170", fips), paste0("17", fips)
       )
-    )
+    ),
+    county = as.character(county),
+    county = ifelse(county %in% county_to_fix, gsub(" ", "", county), county)
   ) %>%
   dplyr::arrange(year, county) %>%
-  dplyr::mutate(county = rep(county_std, nrow(.) / 102)) %>%
   dplyr::select(year, county, fips, population)
 
 
