@@ -4,10 +4,11 @@
 #' the Federal Bureau of Investigation's Crime in the United States (CIUS)
 #' Uniform Crime Reports (UCR) publications.
 #'
-#' @format A data frame with 13 variables:
+#' @format A data frame with 14 variables:
 #' \describe{
 #' \item{\code{year}}{Calendar year}
 #' \item{\code{county}}{County name}
+#' \item{\code{fips}}{Federal Information Processing Standards code}
 #' \item{\code{violent_crime}}{Total sum of violent crime, including murder, rape, roberry and aggravated assault}
 #' \item{\code{murder}}{Count of murder}
 #' \item{\code{rape_old}}{Count of rape, based on an old definition, until 2013}
@@ -35,7 +36,7 @@
 #' \describe{
 #' \item{\code{year}}{Calendar Year}
 #' \item{\code{county}}{County name}
-#' \item{\code{fips}}{FIPS county code}
+#' \item{\code{fips}}{Federal Information Processing Standards code}
 #' \item{\code{violent_crime}}{Total sum of violent crime, including murder, rape, roberry and aggravated assault}
 #' \item{\code{murder}}{Count of murder}
 #' \item{\code{rape}}{Count of rape}
@@ -130,7 +131,6 @@
 #' \item{\code{region}}{Region of the county: Central, North, or South}
 #' \item{\code{circuit}}{Illinois juditical circuit number}
 #' \item{\code{idoc}}{Illinois Department of Correction code}
-#' \item{\code{fips}}{Federal Information Processing Standards code}
 #' \item{\code{fips}}{Federal Information Processing Standards code}
 #' \item{\code{rural_urban_2010}}{Rural/urban categorization based on 2010 Census data. See Ratcliffe et al. (2016)}
 #' \item{\code{rural_percentile_2010}}{Federal Information Processing Standards code}
