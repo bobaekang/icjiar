@@ -33,35 +33,40 @@ get_isp_temp <- function(year_max, year_new, path) {
 
   download.file(url, destfile = path, mode = "wb")
   read_excel(path) %>%
-    select_at(vars(County, matches(as.character(year_new)))) %>%
+    select_at(vars(County, matches(paste0(year_new, "|", year_max) ))) %>%
     rename_all(tolower) %>%
-    select(1, 5:12)
+    select(1, 8:23)
 }
 
-get_isp_new <- function(crimes_isp, isp_temp, year_new) {
-  isp_new <- isp_temp[1:102,]
-  colnames(isp_new) <- colnames(crimes_isp)[c(1, 3, 5:8, 10:13)]
 
-  isp_new %>%
-    mutate_at(vars(-county), as.integer) %>%
-    mutate(
-      county = ifelse(county == "DeWitt", "De Witt", county),
-      year = year_new + 2000,
-      violent_crime = murder + rape + robbery + aggravated_assault,
-      property_crime = burglary + larceny_theft + motor_vehicle_theft + arson
-    )
+get_isp_new <- function(isp_temp, crimes_isp, year_new) {
+  f <- function(x, year) {
+    x <- select_at(x[1:102, ], vars(county, matches(paste0(year))))
+    colnames(x) <- colnames(crimes_isp)[c(2, 5:8, 10:13)]
+    x %>%
+      mutate_at(vars(-county), as.integer) %>%
+      mutate(
+        county = ifelse(county == "DeWitt", "De Witt", county),
+        year = year + 2000,
+        violent_crime = murder + rape + robbery + aggravated_assault,
+        property_crime = burglary + larceny_theft + motor_vehicle_theft + arson
+      )
+  }
+
+  rbind(f(isp_temp, year_new-1), f(isp_temp, year_new))
 }
 
-append_to_crimes_isp <- function(crimes_isp, isp_new) {
+append_to_crimes_isp <- function(isp_new, crimes_isp, year_max) {
   crimes_isp %>%
+    filter(year < 2000 + year_max) %>%
     rbind(left_join(isp_new, distinct(crimes_isp, county, fips))) %>%
     arrange(year, fips)
 }
 
 update_crimes_isp <- function(crimes_isp, year_max, year_new, path) {
-  isp_temp <- get_isp_temp(year_max, year_new, path)
-  isp_new  <- get_isp_new(isp_temp, year_new)
-  updated  <- append_to_crimes_isp(crimes_isp, isp_new)
+  updated <- get_isp_temp(year_max, year_new, path) %>%
+    get_isp_new(crimes_isp, year_new) %>%
+    append_to_crimes_isp(crimes_isp, year_max)
 
   write.csv(updated, "crimes_isp.csv", row.names = FALSE)
   unlink(path)
