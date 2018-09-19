@@ -46,7 +46,13 @@ get_isp_new <- function(isp_temp, crimes_isp, year_new) {
     x %>%
       mutate_at(vars(-county), as.integer) %>%
       mutate(
-        county = ifelse(county == "DeWitt", "De Witt", county),
+        county = case_when(
+          county == "De Kalb" ~ "DeKalb",
+          county == "Du Page" ~ "DuPage",
+          county == "DeWitt" ~ "De Witt",
+          county == "La Salle" ~ "LaSalle",
+          TRUE ~ county
+        ),
         year = year + 2000,
         violent_crime = murder + rape + robbery + aggravated_assault,
         property_crime = burglary + larceny_theft + motor_vehicle_theft + arson
